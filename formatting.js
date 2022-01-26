@@ -5,11 +5,8 @@ const { numberInput, numberOutput } = refs;
 numberInput.addEventListener('input', handleFormatting);
 
 function handleFormatting(e) {
-  format(e.target.value);
-}
-
-function format(value) {
-  numberOutput.textContent = value
-    .toString()
+  e.target.value = e.target.value
+    .replace(/\B(?=(\d{2})+(?!\d))/g, '.')
+    .replace(/[^0-9.]|\.(?=.*\.)/g, '')
     .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
